@@ -311,7 +311,7 @@ ul { list-style: none; }
 /* =============================================
    ABOUT
    ============================================= */
-.about { background: var(--bg-alt); }
+.about { background: var(--bg-alt); border-top: 4px solid var(--lavender-dark); }
 
 .about-grid {
   display: grid;
@@ -375,6 +375,8 @@ ul { list-style: none; }
 /* =============================================
    SERVICES
    ============================================= */
+.services { border-top: 4px solid var(--mint-dark); }
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -402,7 +404,7 @@ ul { list-style: none; }
 /* =============================================
    PACKAGES / PRICING
    ============================================= */
-.packages { background: var(--bg-alt); }
+.packages { background: var(--bg-alt); border-top: 4px solid var(--pink-dark); }
 
 .package-group-title {
   font-size: 1.3rem;
@@ -546,6 +548,8 @@ ul { list-style: none; }
 /* =============================================
    CONTACT
    ============================================= */
+.contact { border-top: 4px solid var(--accent); }
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -737,6 +741,9 @@ ul { list-style: none; }
   .maintenance-grid {
     grid-template-columns: 1fr;
   }
+
+  .services { background: #eefdf6; }
+  .contact  { background: #fdf7ff; }
 
   .form-row { grid-template-columns: 1fr; }
 }
