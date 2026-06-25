@@ -233,7 +233,7 @@ document.querySelector('#app').innerHTML = `
       <h2 class="section-title">Ready to get started?</h2>
       <p class="section-sub">Tell me a little about your business and I'll get back to you within 24 hours.</p>
       <div class="contact-grid">
-        <form class="contact-form" id="contact-form" novalidate>
+        <form class="contact-form" id="contact-form" action="mailto:hello@amandadev.com" method="post" enctype="text/plain">
           <div class="form-row">
             <div class="form-group">
               <label for="name">Your Name</label>
@@ -333,16 +333,33 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 10)
 }, { passive: true })
 
-// Contact form submission handler
+// Contact form — validate required fields before allowing mailto submission
 document.querySelector('#contact-form').addEventListener('submit', e => {
-  e.preventDefault()
-  const btn = e.target.querySelector('button[type="submit"]')
-  btn.textContent = '✅ Message Sent!'
-  btn.disabled = true
-  e.target.reset()
-  setTimeout(() => {
-    btn.textContent = 'Send Message'
-    btn.disabled = false
-  }, 4000)
+  const form = e.target
+  const name = form.querySelector('#name')
+  const email = form.querySelector('#email')
+  let valid = true
+
+  ;[name, email].forEach(field => {
+    field.classList.remove('field-error')
+    if (!field.value.trim()) {
+      field.classList.add('field-error')
+      valid = false
+    }
+  })
+
+  if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+    email.classList.add('field-error')
+    valid = false
+  }
+
+  if (!valid) {
+    e.preventDefault()
+  }
+})
+
+// Clear validation state on input
+document.querySelectorAll('#contact-form input, #contact-form select, #contact-form textarea').forEach(field => {
+  field.addEventListener('input', () => field.classList.remove('field-error'))
 })
 
